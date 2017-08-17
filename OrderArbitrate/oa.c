@@ -215,9 +215,19 @@ int OaNewOrder (uint8_t *TempOrder)
 	OrderList NewOrder;
 	TeaList *NewItem;
 
+	if (TempOrder == NULL) {
+		printf ("OaNewOrder : TempOrder address err\n") ;
+		return -1;
+	}
 	memset (&NewOrder, 0, sizeof (OrderList) ) ;
 	memcpy (&NewOrder, TempOrder, ORDER_HEADER_SIZE) ;
 	NewOrder.SerialNo = SystemSerial; SystemSerial++;
+	printf ("\n[DEBUG]No.%5d ordered %d teas\n", NewOrder.SerialNo, NewOrder.TeaCount) ;
+	printf ("---RAW DATA---\n") ;
+	for (Index = 0; Index < ORDER_HEADER_SIZE; Index++) {
+		printf ("0x%02x ", *(TempOrder + Index) ) ;
+	}
+	printf ("--------------\n") ;
 	/*
 	printf ("type     :%d\n", NewOrder.OrderType) ;
 	printf ("version  :%d\n", NewOrder.OrderVersion) ;

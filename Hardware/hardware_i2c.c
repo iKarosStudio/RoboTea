@@ -18,24 +18,12 @@ int InitI2c (void )
 		perror ("I2C") ;
 		return 1;
 	}
-	printf ("i2c ok!\n") ;
-
-
-	/*
-	Res = ioctl (I2cFd, I2C_SLAVE, 0x74) ;
-	buffer[0] = 0x06;
-	buffer[1] = 0x09;
-	write (I2cFd, &buffer, 2) ;
-
-	buffer[0] = 0x02;
-	buffer[1] = 0x06;
-	write (I2cFd, &buffer, 2) ;
-	*/
-
-	Init_tca1116_0 () ;
-	Init_tca1116_1 () ;
+	
+	Init_tca1116_0 (I2cFd) ;
+	Init_tca1116_1 (I2cFd) ;
 	//Init_PCA9685 () ;
-
+	
+	printf ("i2c ok!\n") ;
 	return 0;
 }
 

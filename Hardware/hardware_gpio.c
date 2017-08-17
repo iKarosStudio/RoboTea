@@ -81,3 +81,12 @@ void GpioToggleLed (void )
 	}	
 }
 
+void Gpio (uint8_t Pin, uint8_t Level) 
+{
+	if (Level) {
+		GPIO_SET = 1 << Pin;
+	} else {
+		GPIO_CLR = 1 << Pin;
+	}
+}
+

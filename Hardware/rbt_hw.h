@@ -16,4 +16,5 @@ int InitUart (void ) ;
 int CameraRoutine (void *p) ;
 
 void GpioToggleLed (void ) ;
+void Gpio (uint8_t Pin, uint8_t Level) ;
 
