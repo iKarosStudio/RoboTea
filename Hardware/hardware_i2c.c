@@ -11,8 +11,7 @@ int I2cFd;
 int InitI2c (void )
 {
 	int Res = 0;
-	uint8_t buffer[2];
-	
+
 	I2cFd = open (I2C_1_PATH, O_RDWR | O_SYNC) ;
 	if (I2cFd < 0) {
 		perror ("I2C") ;
