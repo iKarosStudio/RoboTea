@@ -33,7 +33,7 @@ typedef struct _tea_list {
 	uint8_t MiscFlags;
 } TeaList;
 
-#define ORDER_HEADER_SIZE 9
+#define ORDER_HEADER_SIZE 13
 typedef struct _order_list {
 	uint8_t OrderType;
 	uint8_t OrderVersion;
