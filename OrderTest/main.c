@@ -8,7 +8,7 @@
 #include <time.h>
 
 #define PORT 1000
-#define IP "192.168.0.35"
+#define IP "192.168.0.50"
 
 #define CUPS 5
 
@@ -20,7 +20,7 @@ typedef struct _header {
 	uint8_t order_version;
 	uint8_t serial_no;
 	uint8_t client_no;
-	time_t time;
+	uint8_t year, month, day, hour, minute, second; //6byte
 	uint8_t tea_count;
 } header;
 
@@ -71,14 +71,17 @@ int main (void )
 		return -1;
 	}
 	*/
-	pack_size = 13 + (5 * CUPS) ;
+	pack_size = 11 + (5 * CUPS) ;
 	printf ("size : %d\n", pack_size) ;
 	p = malloc (pack_size) ;
 	memset (p, 0x00, pack_size) ;
 	memcpy (p, &order_header, sizeof (header) ) ;
-	memcpy (p + 13, tea,5 * CUPS) ;
+	
+	memcpy (p + 11, tea,5 * CUPS) ;
+	//memset (p + 11, 0xFF, 5 * CUPS) ;
+	
 	for (index = 0; index < pack_size; index++) {
-		//printf ("0x%02x -> 0x%02x\n", index, *(p + index) ) ;
+		printf ("0x%02x -> 0x%02x\n", index, *(p + index) ) ;
 	}
 	res = sendto (
 		sock_fd,

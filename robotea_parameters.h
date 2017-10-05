@@ -33,14 +33,13 @@ typedef struct _tea_list {
 	uint8_t MiscFlags;
 } TeaList;
 
-#define ORDER_HEADER_SIZE 13
+#define ORDER_HEADER_SIZE 11
 typedef struct _order_list {
 	uint8_t OrderType;
 	uint8_t OrderVersion;
 	uint8_t SerialNo;
 	uint8_t ClientNo;
-	time_t TimeStamp;
-
+	uint8_t year, month, day, hour, minute, second; //6byte
 	uint8_t TeaCount; //Cups in this order
 	struct TeaList *TeaItem; //Point to the head of list of teas
 	struct _order_list *NextOrder;

@@ -111,7 +111,7 @@ void OaDisplayOrderContent (OrderList Order)
 	printf ("Order Version : %d\n", Order.OrderVersion) ;
 	printf ("Order SerialNo: %d\n", Order.SerialNo) ;
 	printf ("Order ClientNo: %d\n", Order.ClientNo) ;
-	printf ("Order TimeStamp: %d\n", Order.TimeStamp) ;
+	//printf ("Order TimeStamp: %d\n", Order.TimeStamp) ;
 	printf ("Order Tea Count: %d\n", Order.TeaCount) ;
 	printf ("Order Tea Item : 0x%08X\n", Order.TeaItem) ;
 	printf ("Next Order     : 0x%08X\n", Order.NextOrder) ;
@@ -230,14 +230,14 @@ int OaNewOrder (uint8_t *TempOrder)
 		printf ("0x%02x ", *(TempOrder + Index) ) ;
 	}
 	printf ("--------------\n") ;
-	/*
+	
 	printf ("type     :%d\n", NewOrder.OrderType) ;
 	printf ("version  :%d\n", NewOrder.OrderVersion) ;
 	printf ("serial no:%d\n", NewOrder.SerialNo) ;
 	printf ("client no:%d\n", NewOrder.ClientNo) ;
-	printf ("time     :%d\n", NewOrder.TimeStamp) ;
+	//printf ("time     :%d\n", NewOrder.TimeStamp) ;
 	printf ("tea count:%d\n", NewOrder.TeaCount) ;
-	*/
+	
 	NewItem = malloc (NewOrder.TeaCount * TEA_ITEM_SIZE) ;
 	memcpy (NewItem, TempOrder + ORDER_HEADER_SIZE, TEA_ITEM_SIZE * NewOrder.TeaCount) ;
 	for (Index = 0; Index < NewOrder.TeaCount; Index++) {
