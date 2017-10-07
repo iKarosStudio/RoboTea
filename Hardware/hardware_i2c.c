@@ -6,7 +6,20 @@
 
 #define I2C_1_PATH "/dev/i2c-1"
 
+extern System *Host;
+
 int I2cFd;
+
+void RelayUpdate (uint8_t Value) 
+{
+	uint8_t Res = ioctl (I2cFd, I2C_SLAVE, 0x74) ;
+	uint8_t Buf[2];
+
+	Buf[0] = 0x03;
+	Host->RelayOut = Value;
+	Buf[1] = Host->RelayOut;
+	write (I2cFd, Buf, 2) ;
+}
 
 int InitI2c (void )
 {

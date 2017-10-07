@@ -112,6 +112,8 @@ void HardwareRoutine (void *p)
 	System *Sys = (System *) p;
 	pthread_t WebcamThreadId;
 	int Res = 0;
+
+	uint8_t tmp = 1;
 	
 	printf ("Hardware Routine\n") ;
 
@@ -139,10 +141,16 @@ void HardwareRoutine (void *p)
 		NULL,
 		HardwareYRail,
 		p) ;
-	
+
 	while (!Sys->SystemEnd) {
-		usleep (16000) ;
-		GpioToggleLed () ;
+		sleep (1) ;
+
+		//RelayUpdate (tmp) ;
+		tmp <<= 1;
+		if (tmp == 0) tmp = 1;
+		
+		//usleep (16000) ;
+		//GpioToggleLed () ;
 	}
 
 	//release gpio map

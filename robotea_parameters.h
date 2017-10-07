@@ -106,6 +106,9 @@ typedef struct _system {
 
 	sem_t CameraLock;
 	CameraControl Camera;
+
+	uint8_t RelayOut;
+	uint8_t Led;
 	
 } System;
 
